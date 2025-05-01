@@ -1,4 +1,4 @@
-# lab05
+# lab06
 > alias gsed=sed
 > cd ${GITHUB_USERNAME}/workspace
 > pushd . # Сохраняет текущую директорию в стеке директорий
@@ -9,18 +9,18 @@
 
 
 
-> git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab05
-Клонирование в «projects/lab05»...
+> git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab06
+Клонирование в «projects/lab06»...
 remote: Enumerating objects: 35, done.
 remote: Counting objects: 100% (35/35), done.
 remote: Compressing objects: 100% (21/21), done.
 remote: Total 35 (delta 8), reused 28 (delta 7), pack-reused 0 (from 0)
 Получение объектов: 100% (35/35), 16.39 КиБ | 381.00 КиБ/с, готово.
 Определение изменений: 100% (8/8), готово.
-> cd projects/lab05
+> cd projects/lab06
 > git remote remove origin
-> git remote add origin https://github.com/${GITHUB_USERNAME}/lab05
-~/m/w/p/lab05 main >                                                     rb 3.2.2 13:31:32
+> git remote add origin https://github.com/${GITHUB_USERNAME}/lab06
+~/m/w/p/lab06 main >                                                     rb 3.2.2 13:31:32
 
 Клонируем репозиторий из 4 лабораторной в локальную папку, а затем переходим в нее. 
 Затем удаляем привязку к репозиторию лабы 4, чтобы привязать к 5-ой.
@@ -53,7 +53,7 @@ remote: Total 35 (delta 8), reused 28 (delta 7), pack-reused 0 (from 0)
 
 > mkdir third-party
 > git submodule add https://github.com/google/googletest third-party/gtest
-Клонирование в «/home/matvey/matveech99/workspace/projects/lab05/third-party/gtest»...
+Клонирование в «/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest»...
 remote: Enumerating objects: 28002, done.
 remote: Counting objects: 100% (243/243), done.
 remote: Compressing objects: 100% (154/154), done.
@@ -72,7 +72,7 @@ remote: Total 28002 (delta 153), reused 91 (delta 88), pack-reused 27759 (from 4
 сделать это (сейчас или позже), используя команду switch с параметром -c.
 Например:> mkdir third-party
 > git submodule add https://github.com/google/googletest third-party/gtest
-Клонирование в «/home/matvey/matveech99/workspace/projects/lab05/third-party/gtest»...
+Клонирование в «/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest»...
 remote: Enumerating objects: 28002, done.
 remote: Counting objects: 100% (243/243), done.
 remote: Compressing objects: 100% (154/154), done.
@@ -159,7 +159,7 @@ if(BUILD_TESTS)
   add_test(NAME check COMMAND check)
 endif()
 EOF
-~/m/w/p/lab05 main !1 >     
+~/m/w/p/lab06 main !1 >     
 
 Добавляем BUILD_TESTS в CMakeLists.txt
 СmakeLists.txt нужно добавить вручную, так как его нет в коммите 4 лабы. 
@@ -185,7 +185,7 @@ TEST(Print, InFileStream)
   EXPECT_EQ(result, text);
 }
 EOF
-~/m/w/p/lab05 main !1 ?1 >  
+~/m/w/p/lab06 main !1 ?1 >  
 
 Создаём тестовый файл test1.cpp для проверки функции print с использованием Google Test. 
 
@@ -253,21 +253,21 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Found Threads: TRUE  
 -- Configuring done (0.4s)
 -- Generating done (0.0s)
--- Build files have been written to: /home/matvey/matveech99/workspace/projects/lab05/_build
+-- Build files have been written to: /home/matvey/matveech99/workspace/projects/lab06/_build
 > cmake --build _build
 [  8%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
 [ 16%] Linking CXX static library libprint.a
 [ 16%] Built target print
 [ 25%] Building CXX object third-party/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
-In file included from /home/matvey/matveech99/workspace/projects/lab05/third-party/gtest/googletest/src/gtest-all.cc:42:
-/home/matvey/matveech99/workspace/projects/lab05/third-party/gtest/googletest/src/gtest-death-test.cc: In function ‘bool testing::internal::StackGrowsDown()’:
-/home/matvey/matveech99/workspace/projects/lab05/third-party/gtest/googletest/src/gtest-death-test.cc:1224:24: warning: ‘dummy’ may be used uninitialized [-Wmaybe-uninitialized]
+In file included from /home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-all.cc:42:
+/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc: In function ‘bool testing::internal::StackGrowsDown()’:
+/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc:1224:24: warning: ‘dummy’ may be used uninitialized [-Wmaybe-uninitialized]
  1224 |   StackLowerThanAddress(&dummy, &result);
       |   ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
-/home/matvey/matveech99/workspace/projects/lab05/third-party/gtest/googletest/src/gtest-death-test.cc:1214:13: note: by argument 1 of type ‘const void*’ to ‘void testing::internal::StackLowerThanAddress(const void*, bool*)’ declared here
+/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc:1214:13: note: by argument 1 of type ‘const void*’ to ‘void testing::internal::StackLowerThanAddress(const void*, bool*)’ declared here
  1214 | static void StackLowerThanAddress(const void* ptr, bool* result) {
       |             ^~~~~~~~~~~~~~~~~~~~~
-/home/matvey/matveech99/workspace/projects/lab05/third-party/gtest/googletest/src/gtest-death-test.cc:1222:7: note: ‘dummy’ declared here
+/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc:1222:7: note: ‘dummy’ declared here
  1222 |   int dummy;
       |       ^~~~~
 [ 33%] Linking CXX static library libgtest.a
@@ -301,7 +301,7 @@ cmake --build _build --target test - Запускает цель test, кото�
 
 
 > _build/check
-Running main() from /home/matvey/matveech99/workspace/projects/lab05/third-party/gtest/googletest/src/gtest_main.cc
+Running main() from /home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest_main.cc
 [==========] Running 1 test from 1 test case.
 [----------] Global test environment set-up.
 [----------] 1 test from Print
@@ -316,9 +316,9 @@ Running main() from /home/matvey/matveech99/workspace/projects/lab05/third-party
 
 
 Running tests...
-UpdateCTestConfiguration  from :/home/matvey/matveech99/workspace/projects/lab05/_build/DartConfiguration.tcl
-UpdateCTestConfiguration  from :/home/matvey/matveech99/workspace/projects/lab05/_build/DartConfiguration.tcl
-Test project /home/matvey/matveech99/workspace/projects/lab05/_build
+UpdateCTestConfiguration  from :/home/matvey/matveech99/workspace/projects/lab06/_build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/home/matvey/matveech99/workspace/projects/lab06/_build/DartConfiguration.tcl
+Test project /home/matvey/matveech99/workspace/projects/lab06/_build
 Constructing a list of tests
 Done constructing a list of tests
 Updating test list for fixtures
@@ -327,10 +327,10 @@ Checking test dependency graph...
 Checking test dependency graph end
 test 1
     Start 1: check
-1: Test command: /home/matvey/matveech99/workspace/projects/lab05/_build/check
-1: Working Directory: /home/matvey/matveech99/workspace/projects/lab05/_build
+1: Test command: /home/matvey/matveech99/workspace/projects/lab06/_build/check
+1: Working Directory: /home/matvey/matveech99/workspace/projects/lab06/_build
 1: Test timeout computed to be: 10000000
-1: Running main() from /home/matvey/matveech99/workspace/projects/lab05/third-party/gtest/googletest/src/gtest_main.cc
+1: Running main() from /home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest_main.cc
 1: [==========] Running 1 test from 1 test case.
 1: [----------] Global test environment set-up.
 1: [----------] 1 test from Print
@@ -344,10 +344,10 @@ test 1
 1/1 Test #1: check ............................   Passed    0.00 sec
 100% tests passed, 0 tests failed out of 1
 Total Test time (real) =   0.00 sec
-~/m/w/p/lab05 main !1 ?3 >  
+~/m/w/p/lab06 main !1 ?3 >  
 Запускает исполняемый файл тестов check напрямую
 Запускает тесты через систему Ctest
-> gsed -i 's/lab04/lab05/g' README.md
+> gsed -i 's/lab04/lab06/g' README.md
 > gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
 > gsed -i '/cmake --build _build --target install/a\
 - cmake --build _build --target test -- ARGS=--verbose
@@ -409,14 +409,14 @@ index 954e4d0..efc0ba2 100644
 @@ -1 +1 @@
 -# lab04
 \ No newline at end of file
-+# lab05
++# lab06
 \ No newline at end of file
 (1/1) Индексировать этот блок [y,n,q,a,d,e,?]? git commit -m"added tests"
 Нет других блоков для перехода
 @@ -1 +1 @@
 -# lab04
 \ No newline at end of file
-+# lab05
++# lab06
 \ No newline at end of file
 (1/1) Индексировать этот блок [y,n,q,a,d,e,?]? y
 
@@ -426,7 +426,7 @@ index 954e4d0..efc0ba2 100644
  create mode 100644 tests/test1.cpp
 > git push origin master
 error: src refspec master ничему не соответствует
-error: не удалось отправить некоторые ссылки в «https://github.com/matveech99/lab05»
+error: не удалось отправить некоторые ссылки в «https://github.com/matveech99/lab06»
 > git status
 Текущая ветка: main
 Неотслеживаемые файлы:
