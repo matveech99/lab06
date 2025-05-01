@@ -1,199 +1,207 @@
-# lab06
-> alias gsed=sed
-> cd ${GITHUB_USERNAME}/workspace
-> pushd . # Сохраняет текущую директорию в стеке директорий
-~/matveech99/workspace ~
-> source scripts/activate
-~/matveech99/workspace
-
-
-
-
-> git clone https://github.com/${GITHUB_USERNAME}/lab04 projects/lab06
-Клонирование в «projects/lab06»...
-remote: Enumerating objects: 35, done.
-remote: Counting objects: 100% (35/35), done.
-remote: Compressing objects: 100% (21/21), done.
-remote: Total 35 (delta 8), reused 28 (delta 7), pack-reused 0 (from 0)
-Получение объектов: 100% (35/35), 16.39 КиБ | 381.00 КиБ/с, готово.
-Определение изменений: 100% (8/8), готово.
-> cd projects/lab06
-> git remote remove origin
 > git remote add origin https://github.com/${GITHUB_USERNAME}/lab06
-~/m/w/p/lab06 main >                                                     rb 3.2.2 13:31:32
-
-Клонируем репозиторий из 4 лабораторной в локальную папку, а затем переходим в нее. 
-Затем удаляем привязку к репозиторию лабы 4, чтобы привязать к 5-ой.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-> mkdir third-party
-> git submodule add https://github.com/google/googletest third-party/gtest
-Клонирование в «/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest»...
-remote: Enumerating objects: 28002, done.
-remote: Counting objects: 100% (243/243), done.
-remote: Compressing objects: 100% (154/154), done.
-remote: Total 28002 (delta 153), reused 91 (delta 88), pack-reused 27759 (from 4)
-Получение объектов: 100% (28002/28002), 13.52 МиБ | 4.30 МиБ/с, готово.
-Определение изменений: 100% (20745/20745), готово.
-> cd third-party/gtest && git checkout release-1.8.1 && cd ../..
-Примечание: переключение на «release-1.8.1».
-
-Вы сейчас в состоянии «отсоединённого указателя HEAD». Можете осмотреться,
-внести экспериментальные изменения и зафиксировать их, также можете
-отменить любые коммиты, созданные в этом состоянии, не затрагивая другие
-ветки, переключившись обратно на любую ветку.
-
-Если хотите создать новую ветку для сохранения созданных коммитов, можете
-сделать это (сейчас или позже), используя команду switch с параметром -c.
-Например:> mkdir third-party
-> git submodule add https://github.com/google/googletest third-party/gtest
-Клонирование в «/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest»...
-remote: Enumerating objects: 28002, done.
-remote: Counting objects: 100% (243/243), done.
-remote: Compressing objects: 100% (154/154), done.
-remote: Total 28002 (delta 153), reused 91 (delta 88), pack-reused 27759 (from 4)
-Получение объектов: 100% (28002/28002), 13.52 МиБ | 4.30 МиБ/с, готово.
-Определение изменений: 100% (20745/20745), готово.
-> cd third-party/gtest && git checkout release-1.8.1 && cd ../..
-Примечание: переключение на «release-1.8.1».
-
-Вы сейчас в состоянии «отсоединённого указателя HEAD». Можете осмотреться,
-внести экспериментальные изменения и зафиксировать их, также можете
-отменить любые коммиты, созданные в этом состоянии, не затрагивая другие
-ветки, переключившись обратно на любую ветку.
-
-Если хотите создать новую ветку для сохранения созданных коммитов, можете
-сделать это (сейчас или позже), используя команду switch с параметром -c.
-Например:
-
-  git switch -c <новая-ветка>
-
-Или отмените эту операцию с помощью:
-
-  git switch -
-
-Отключите этот совет, установив переменную конфигурации
-advice.detachedHead в значение false
-
-HEAD сейчас на 2fe3bd99 Merge pull request #1433 from dsacre/fix-clang-warnings
-> 
-> git add third-party/gtest
-> git commit -m"added gtest framework"
-[main 4e28427] added gtest framework
- 2 files changed, 4 insertions(+)
- create mode 100644 .gitmodules
- create mode 160000 third-party/gtest
-
-  git switch -c <новая-ветка>
-
-Или отмените эту операцию с помощью:
-
-  git switch -
-
-Отключите этот совет, установив переменную конфигурации
-advice.detachedHead в значение false
-
-HEAD сейчас на 2fe3bd99 Merge pull request #1433 from dsacre/fix-clang-warnings
-> 
-> git add third-party/gtest
-> git commit -m"added gtest framework"
-[main 4e28427] added gtest framework
- 2 files changed, 4 insertions(+)
- create mode 100644 .gitmodules
- create mode 160000 third-party/gtest
-
-Создаём директорию third-party для хранения gtest.
-Переходим в директорию подмодуля (gtest).
-Фиксируем ссылку на конкретный коммит подмодуля (в данном случае — release-1.8.1) в индексе Git.
-Затем создаём коммит с сообщением «added gtest framework»
-
-
-> gsed -i '/option(BUILD_EXAMPLES "Build examples" OFF)/a\
-option(BUILD_TESTS "Build tests" OFF)
+> gsed -i '/project(print)/a\
+set(PRINT_VERSION_STRING "v\${PRINT_VERSION}")
 ' CMakeLists.txt
-sed: невозможно прочитать CMakeLists.txt: Нет такого файла или каталога
-> git status
-Текущая ветка: main
-нечего коммитить, нет изменений в рабочем каталоге
-> git add CMakeLists.txt
-> git commit -m"Initial commit"
-[main 411f59c] Initial commit
- 1 file changed, 36 insertions(+)
- create mode 100644 CMakeLists.txt
-> gsed -i '/option(BUILD_EXAMPLES "Build examples" OFF)/a\
-option(BUILD_TESTS "Build tests" OFF)
+> gsed -i '/project(print)/a\
+set(PRINT_VERSION\
+  \${PRINT_VERSION_MAJOR}.\${PRINT_VERSION_MINOR}.\${PRINT_VERSION_PATCH}.\${PRINT_VERSION_TWEAK})
 ' CMakeLists.txt
-> cat >> CMakeLists.txt <<EOF
+> gsed -i '/project(print)/a\
+set(PRINT_VERSION_TWEAK 0)
+' CMakeLists.txt
+> gsed -i '/project(print)/a\
+set(PRINT_VERSION_PATCH 0)
+' CMakeLists.txt
+> gsed -i '/project(print)/a\
+set(PRINT_VERSION_MINOR 1)
+' CMakeLists.txt
+> gsed -i '/project(print)/a\
+set(PRINT_VERSION_MAJOR 0)
+' CMakeLists.txt
+> git diff
 
-if(BUILD_TESTS)
-  enable_testing()
-  add_subdirectory(third-party/gtest)
-  file(GLOB \${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
-  add_executable(check \${\${PROJECT_NAME}_TEST_SOURCES})
-  target_link_libraries(check \${PROJECT_NAME} gtest_main)
-  add_test(NAME check COMMAND check)
-endif()
+
+Результат git diff:
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0bd75e9..9b283ad 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -8,6 +8,13 @@ option(BUILD_TESTS "Build tests" OFF)
+ option(BUILD_TESTS "Build tests" OFF)
+ 
+ project(print)
++set(PRINT_VERSION_MAJOR 0)
++set(PRINT_VERSION_MINOR 1)
++set(PRINT_VERSION_PATCH 0)
++set(PRINT_VERSION_TWEAK 0)
++set(PRINT_VERSION
++  ${PRINT_VERSION_MAJOR}.${PRINT_VERSION_MINOR}.${PRINT_VERSION_PATCH}.${PRINT_VERSION_TWEAK})
++set(PRINT_VERSION_STRING "v${PRINT_VERSION}")
+ 
+ add_library(print STATIC ${CMAKE_CURRENT_SOURCE_DIR}/sources/print.cpp)
+
+   1.gsed -i '/project(print)/a\ set(PRINT_VERSION_MAJOR 0)'
+        ◦ Добавляет строку set(PRINT_VERSION_MAJOR 0) после project(print).
+        ◦ Устанавливает основную версию (major) в 0.
+    2. gsed -i '/project(print)/a\ set(PRINT_VERSION_MINOR 1)'
+        ◦ Добавляет строку set(PRINT_VERSION_MINOR 1) после project(print).
+        ◦ Устанавливает дополнительную версию (minor) в 1.
+    3. gsed -i '/project(print)/a\ set(PRINT_VERSION_PATCH 0)'
+        ◦ Добавляет строку set(PRINT_VERSION_PATCH 0) после project(print).
+        ◦ Устанавливает версию патча (patch) в 0.
+    4. gsed -i '/project(print)/a\ set(PRINT_VERSION_TWEAK 0)'
+        ◦ Добавляет строку set(PRINT_VERSION_TWEAK 0) после project(print).
+        ◦ Устанавливает дополнительную корректировку (tweak) в 0.
+    5. gsed -i '/project(print)/a\ set(PRINT_VERSION ${PRINT_VERSION_MAJOR}.${PRINT_VERSION_MINOR}.${PRINT_VERSION_PATCH}.${PRINT_VERSION_TWEAK})'
+        ◦ Собирает полную версию из отдельных компонентов в формате MAJOR.MINOR.PATCH.TWEAK (например, 0.1.0.0).
+    6. gsed -i '/project(print)/a\ set(PRINT_VERSION_STRING "v${PRINT_VERSION}")'
+        ◦ Создает строку версии с префиксом v (например, v0.1.0.0).
+
+
+ 
+> touch DESCRIPTION && edit DESCRIPTION
+zsh: command not found: edit
+> touch DESCRIPTION && nano DESCRIPTION
+> touch ChangeLog.md
+> export DATE="`LANG=en_US date +'%a %b %d %Y'`"
+> cat > ChangeLog.md <<EOF
+* ${DATE} ${GITHUB_USERNAME} <${GITHUB_EMAIL}> 0.1.0.0
+- Initial RPM release
 EOF
-~/m/w/p/lab06 main !1 >     
 
-Добавляем BUILD_TESTS в CMakeLists.txt
-СmakeLists.txt нужно добавить вручную, так как его нет в коммите 4 лабы. 
-> mkdir tests
-> cat > tests/test1.cpp <<EOF
-#include <print.hpp>
+Создаём файл DESCRIPTION и зыписываем в него изменения. 
+Создаём файл для записи изменений и переводим раскладку 
 
-#include <gtest/gtest.h>
 
-TEST(Print, InFileStream)
-{
-  std::string filepath = "file.txt";
-  std::string text = "hello";
-  std::ofstream out{filepath};
 
-  print(text, out);
-  out.close();
 
-  std::string result;
-  std::ifstream in{filepath};
-  in >> result;
 
-  EXPECT_EQ(result, text);
-}
+> cat > CPackConfig.cmake <<EOF
+include(InstallRequiredSystemLibraries)
 EOF
-~/m/w/p/lab06 main !1 ?1 >  
 
-Создаём тестовый файл test1.cpp для проверки функции print с использованием Google Test. 
-
+Это CMake-команда, которая подключает стандартный модуль InstallRequiredSystemLibraries. Этот модуль автоматически проверяет, какие системные библиотеки нужны для работы программы, и включает их в пакет 
 
 
 
 
-> cmake -B _build -DBUILD_TESTS=ON
+
+
+> cat >> CPackConfig.cmake <<EOF
+set(CPACK_PACKAGE_CONTACT ${GITHUB_EMAIL})
+set(CPACK_PACKAGE_VERSION_MAJOR \${PRINT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR \${PRINT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH \${PRINT_VERSION_PATCH})
+set(CPACK_PACKAGE_VERSION_TWEAK \${PRINT_VERSION_TWEAK})
+set(CPACK_PACKAGE_VERSION \${PRINT_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_FILE \${CMAKE_CURRENT_SOURCE_DIR}/DESCRIPTION)
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "static C++ library for printing")
+EOF
+
+Эта команда дописывает в конец файла CPackConfig.cmake настройки для системы упаковки CPack, используя ранее определённые переменные версии (PRINT_VERSION_*) и другие параметры.
+> cat >> CPackConfig.cmake <<EOF
+
+set(CPACK_RESOURCE_FILE_LICENSE \${CMAKE_CURRENT_SOURCE_DIR}/LICENSE)
+set(CPACK_RESOURCE_FILE_README \${CMAKE_CURRENT_SOURCE_DIR}/README.md)
+EOF
+
+Эта команда дописывает в конец файла CPackConfig.cmake две важные настройки, которые связывают файлы лицензии и README с генерируемым пакетом.
+
+
+
+
+
+
+
+
+
+cat >> CPackConfig.cmake <<EOF
+
+set(CPACK_RPM_PACKAGE_NAME "print-devel")
+set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+set(CPACK_RPM_PACKAGE_GROUP "print")
+set(CPACK_RPM_CHANGELOG_FILE \${CMAKE_CURRENT_SOURCE_DIR}/ChangeLog.md)
+set(CPACK_RPM_PACKAGE_RELEASE 1)
+EOF
+Эта команда добавляет в конец файла CPackConfig.cmake специфичные для RPM настройки упаковки.
+
+
+
+
+
+
+cat >> CPackConfig.cmake <<EOF
+
+set(CPACK_DEBIAN_PACKAGE_NAME "libprint-dev")
+set(CPACK_DEBIAN_PACKAGE_PREDEPENDS "cmake >= 3.0")
+set(CPACK_DEBIAN_PACKAGE_RELEASE 1)
+EOF
+Устанавливает имя пакета в формате lib<имя>-dev
+Указывает релиз пакета
+
+> cat >> CPackConfig.cmake <<EOF
+
+include(CPack)
+EOF
+
+Эта команда добавляет ключевую директиву include(CPack) в конец файла CPackConfig.cmake, активируя систему сборки пакетов Cpack.
+
+
+
+
+
+
+cat >> CMakeLists.txt <<EOF
+
+include(CPackConfig.cmake)
+EOF
+
+Эта команда добавляет строку include(CPackConfig.cmake) в конец файла CMakeLists.txt, подключая конфигурационный файл CPack к основному процессу сборки.
+
+
+> gsed -i 's/lab05/lab06/g' README.md
+> git add .
+> git commit -m"added cpack config"
+[main b7f3d8e] added cpack config
+ 5 files changed, 82 insertions(+), 28 deletions(-)
+ create mode 100644 CPackConfig.cmake
+ create mode 100644 ChangeLog.md
+ create mode 100644 DESCRIPTION
+> git tag v0.1.0.0
+> git push origin master --tags
+error: src refspec master ничему не соответствует
+error: не удалось отправить некоторые ссылки в «https://github.com/matveech99/lab06»
+> git push origin main --tags
+Перечисление объектов: 183, готово.
+Подсчет объектов: 100% (183/183), готово.
+При сжатии изменений используется до 16 потоков
+Сжатие объектов: 100% (106/106), готово.
+Запись объектов: 100% (183/183), 1.24 МиБ | 2.41 МиБ/с, готово.
+Всего 183 (изменений 59), повторно использовано 173 (изменений 56), повторно использовано пакетов 0
+remote: Resolving deltas: 100% (59/59), done.
+To https://github.com/matveech99/lab06
+ * [new tag]         v0.1.0.0 -> v0.1.0.0
+ ! [rejected]        main -> main (fetch first)
+error: не удалось отправить некоторые ссылки в «https://github.com/matveech99/lab06»
+подсказка: Updates were rejected because the remote contains work that you do not
+подсказка: have locally. This is usually caused by another repository pushing to
+подсказка: the same ref. If you want to integrate the remote changes, use
+подсказка: 'git pull' before pushing again.
+подсказка: See the 'Note about fast-forwards' in 'git push --help' for details.
+> git push --force origin main --tags
+Всего 0 (изменений 0), повторно использовано 0 (изменений 0), повторно использовано пакетов 0
+To https://github.com/matveech99/lab06
+ + 191ff30...b7f3d8e main -> main (forced update)
+> cmake -H. -B_build
+CMake Error: The current CMakeCache.txt directory /home/matvey/matveech99/workspace/projects/lab06/_build/CMakeCache.txt is different than the directory /home/matvey/matveech99/workspace/projects/lab05/_build where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
+CMake Error: The source "/home/matvey/matveech99/workspace/projects/lab06/CMakeLists.txt" does not match the source "/home/matvey/matveech99/workspace/projects/lab05/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
+> 
+> cmake -H. -B_build
+CMake Error: The current CMakeCache.txt directory /home/matvey/matveech99/workspace/projects/lab06/_build/CMakeCache.txt is different than the directory /home/matvey/matveech99/workspace/projects/lab05/_build where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
+CMake Error: The source "/home/matvey/matveech99/workspace/projects/lab06/CMakeLists.txt" does not match the source "/home/matvey/matveech99/workspace/projects/lab05/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
+> 
+> rm -rf _build
+> cmake -H. -B_build
 CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
   Compatibility with CMake < 3.5 will be removed from a future version of
   CMake.
@@ -214,266 +222,73 @@ CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
 -- Check for working CXX compiler: /usr/bin/c++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
-CMake Deprecation Warning at third-party/gtest/CMakeLists.txt:1 (cmake_minimum_required):
-  Compatibility with CMake < 3.5 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value or use a ...<max> suffix to tell
-  CMake that the project does not need compatibility with older versions.
-
-
-CMake Deprecation Warning at third-party/gtest/googlemock/CMakeLists.txt:42 (cmake_minimum_required):
-  Compatibility with CMake < 3.5 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value or use a ...<max> suffix to tell
-  CMake that the project does not need compatibility with older versions.
-
-
-CMake Deprecation Warning at third-party/gtest/googletest/CMakeLists.txt:49 (cmake_minimum_required):
-  Compatibility with CMake < 3.5 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value or use a ...<max> suffix to tell
-  CMake that the project does not need compatibility with older versions.
-
-
-CMake Warning (dev) at third-party/gtest/googletest/cmake/internal_utils.cmake:239 (find_package):
-  Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
-  are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
-  the cmake_policy command to set the policy and suppress this warning.
-
+CMake Error at /usr/share/cmake-3.28/Modules/CPack.cmake:685 (message):
+  CPack license resource file:
+  "/home/matvey/matveech99/workspace/projects/lab06/LICENSE" could not be
+  found.
 Call Stack (most recent call first):
-  third-party/gtest/googletest/CMakeLists.txt:84 (include)
-This warning is for project developers.  Use -Wno-dev to suppress it.
+  /usr/share/cmake-3.28/Modules/CPack.cmake:690 (cpack_check_file_exists)
+  CPackConfig.cmake:24 (include)
+  CMakeLists.txt:64 (include)
 
--- Found PythonInterp: /usr/bin/python3 (found version "3.12.3") 
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE  
--- Configuring done (0.4s)
+
+-- Configuring incomplete, errors occurred!
+> cmake --build _build
+gmake: Makefile: Нет такого файла или каталога
+gmake: *** Нет правила для сборки цели «Makefile».  Останов.
+> touch LICENSE
+> cmake -H. -B_build
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/matvey/matveech99/workspace/projects/lab06/_build
 > cmake --build _build
-[  8%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
-[ 16%] Linking CXX static library libprint.a
-[ 16%] Built target print
-[ 25%] Building CXX object third-party/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
-In file included from /home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-all.cc:42:
-/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc: In function ‘bool testing::internal::StackGrowsDown()’:
-/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc:1224:24: warning: ‘dummy’ may be used uninitialized [-Wmaybe-uninitialized]
- 1224 |   StackLowerThanAddress(&dummy, &result);
-      |   ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
-/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc:1214:13: note: by argument 1 of type ‘const void*’ to ‘void testing::internal::StackLowerThanAddress(const void*, bool*)’ declared here
- 1214 | static void StackLowerThanAddress(const void* ptr, bool* result) {
-      |             ^~~~~~~~~~~~~~~~~~~~~
-/home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest-death-test.cc:1222:7: note: ‘dummy’ declared here
- 1222 |   int dummy;
-      |       ^~~~~
-[ 33%] Linking CXX static library libgtest.a
-[ 33%] Built target gtest
-[ 41%] Building CXX object third-party/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
-[ 50%] Linking CXX static library libgtest_main.a
-[ 50%] Built target gtest_main
-[ 58%] Building CXX object CMakeFiles/check.dir/tests/test1.cpp.o
-[ 66%] Linking CXX executable check
-[ 66%] Built target check
-[ 75%] Building CXX object third-party/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
-[ 83%] Linking CXX static library libgmock.a
-[ 83%] Built target gmock
-[ 91%] Building CXX object third-party/gtest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
-[100%] Linking CXX static library libgmock_main.a
-[100%] Built target gmock_main
-cmake -H. -B_build -DBUILD_TESTS=ON - Конфигурирует проект с помощью Cmake.
-cmake --build _build - Запускает сборку проекта в директории _build.
-cmake --build _build --target test - Запускает цель test, которая выполняет все зарегистрированные тесты через Ctest.
+[ 50%] Building CXX object CMakeFiles/print.dir/sources/print.cpp.o
+[100%] Linking CXX static library libprint.a
+[100%] Built target print
+> cd _build
+> cpack -G "TGZ"
+CPack: Create package using TGZ
+CPack: Install projects
+CPack: - Run preinstall target for: print
+CPack: - Install project: print []
+CPack: Create package
+CPack: - package: /home/matvey/matveech99/workspace/projects/lab06/_build/print-0.1.0.0-Linux.tar.gz generated.
+> cd ..
+> cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
 
 
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/matvey/matveech99/workspace/projects/lab06/_build
+> cmake --build _build --target package
+[100%] Built target print
+Run CPack packaging tool...
+CPack: Create package using TGZ
+CPack: Install projects
+CPack: - Run preinstall target for: print
+CPack: - Install project: print []
+CPack: Create package
+CPack: - package: /home/matvey/matveech99/workspace/projects/lab06/_build/print-0.1.0.0-Linux.tar.gz generated.
+> mkdir artifacts
+> mv _build/*.tar.gz artifacts
+> tree artifacts
+artifacts
+└── print-0.1.0.0-Linux.tar.gz
 
-
-
-
-
-
-
-
-
-
-
-> _build/check
-Running main() from /home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest_main.cc
-[==========] Running 1 test from 1 test case.
-[----------] Global test environment set-up.
-[----------] 1 test from Print
-[ RUN      ] Print.InFileStream
-[       OK ] Print.InFileStream (0 ms)
-[----------] 1 test from Print (0 ms total)
-
-[----------] Global test environment tear-down
-[==========] 1 test from 1 test case ran. (0 ms total)
-[  PASSED  ] 1 test.
-> cmake --build _build --target test -- ARGS=--verbose
-
-
-Running tests...
-UpdateCTestConfiguration  from :/home/matvey/matveech99/workspace/projects/lab06/_build/DartConfiguration.tcl
-UpdateCTestConfiguration  from :/home/matvey/matveech99/workspace/projects/lab06/_build/DartConfiguration.tcl
-Test project /home/matvey/matveech99/workspace/projects/lab06/_build
-Constructing a list of tests
-Done constructing a list of tests
-Updating test list for fixtures
-Added 0 tests to meet fixture requirements
-Checking test dependency graph...
-Checking test dependency graph end
-test 1
-    Start 1: check
-1: Test command: /home/matvey/matveech99/workspace/projects/lab06/_build/check
-1: Working Directory: /home/matvey/matveech99/workspace/projects/lab06/_build
-1: Test timeout computed to be: 10000000
-1: Running main() from /home/matvey/matveech99/workspace/projects/lab06/third-party/gtest/googletest/src/gtest_main.cc
-1: [==========] Running 1 test from 1 test case.
-1: [----------] Global test environment set-up.
-1: [----------] 1 test from Print
-1: [ RUN      ] Print.InFileStream
-1: [       OK ] Print.InFileStream (0 ms)
-1: [----------] 1 test from Print (0 ms total)
-1: 
-1: [----------] Global test environment tear-down
-1: [==========] 1 test from 1 test case ran. (0 ms total)
-1: [  PASSED  ] 1 test.
-1/1 Test #1: check ............................   Passed    0.00 sec
-100% tests passed, 0 tests failed out of 1
-Total Test time (real) =   0.00 sec
-~/m/w/p/lab06 main !1 ?3 >  
-Запускает исполняемый файл тестов check напрямую
-Запускает тесты через систему Ctest
-> gsed -i 's/lab04/lab06/g' README.md
-> gsed -i 's/\(DCMAKE_INSTALL_PREFIX=_install\)/\1 -DBUILD_TESTS=ON/' .travis.yml
-> gsed -i '/cmake --build _build --target install/a\
-- cmake --build _build --target test -- ARGS=--verbose
-' .travis.yml
- git add .travis.yml
-> git add tests
-> git add -p
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 96a361e..54b9abd 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 11)
- set(CMAKE_CXX_STANDARD_REQUIRED ON)
- 
- option(BUILD_EXAMPLES "Build examples" OFF)
-+option(BUILD_TESTS "Build tests" OFF)
- 
- project(print)
- 
-(1/2) Индексировать этот блок [y,n,q,a,d,j,J,g,/,e,?]? y
-@@ -34,3 +35,20 @@ install(TARGETS print
- 
- install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
- install(EXPORT print-config DESTINATION cmake)
-+
-+if(BUILD_TESTS)
-+  enable_testing()
-+  
-+  
-+  # Решение 1: Отключаем -Werror для gtest (добавьте эту строку)
-+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=maybe-uninitialized")
-+  
-+  # Подключаем gtest (уже с отключенной ошибкой)
-+  add_subdirectory(third-party/gtest)
-+    
-+  
-+  file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
-+  add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
-+  target_link_libraries(check ${PROJECT_NAME} gtest_main)
-+  add_test(NAME check COMMAND check)
-+endif()
-(2/2) Индексировать этот блок [y,n,q,a,d,K,g,/,e,?]? y
-<stdin>:20: trailing whitespace.
-  
-<stdin>:21: trailing whitespace.
-  
-<stdin>:24: trailing whitespace.
-  
-<stdin>:27: trailing whitespace.
-    
-<stdin>:28: trailing whitespace.
-  
-warning: 5 строк добавили ошибки в пробельных символах.
-
-diff --git a/README.md b/README.md
-index 954e4d0..efc0ba2 100644
---- a/README.md
-+++ b/README.md
-@@ -1 +1 @@
--# lab04
-\ No newline at end of file
-+# lab06
-\ No newline at end of file
-(1/1) Индексировать этот блок [y,n,q,a,d,e,?]? git commit -m"added tests"
-Нет других блоков для перехода
-@@ -1 +1 @@
--# lab04
-\ No newline at end of file
-+# lab06
-\ No newline at end of file
-(1/1) Индексировать этот блок [y,n,q,a,d,e,?]? y
-
-> git commit -m"added tests"
-[main f481be0] added tests
- 3 files changed, 38 insertions(+), 1 deletion(-)
- create mode 100644 tests/test1.cpp
-> git push origin master
-error: src refspec master ничему не соответствует
-error: не удалось отправить некоторые ссылки в «https://github.com/matveech99/lab06»
-> git status
-Текущая ветка: main
-Неотслеживаемые файлы:
-  (используйте «git add <файл>...», чтобы добавить в то, что будет включено в коммит)
-	_build/
-	file.txt
-
-индекс пуст, но есть неотслеживаемые файлы
-(используйте «git add», чтобы проиндексировать их)
-> 
-> git add .
-> git commit -m"added tests"
-> sudo apt install gnome-screenshot
-[sudo] пароль для matvey: 
-Чтение списков пакетов… Готово
-Построение дерева зависимостей… Готово
-Чтение информации о состоянии… Готово         
-Следующие пакеты устанавливались автоматически и больше не требуются:
-  libpkcs11-helper1t64 python3-netifaces
-Для их удаления используйте «sudo apt autoremove».
-Следующие НОВЫЕ пакеты будут установлены:
-  gnome-screenshot
-Обновлено 0 пакетов, установлено 1 новых пакетов, для удаления отмечено 0 пакетов, и 89 пакетов не обновлено.
-Необходимо скачать 174 kB архивов.
-После данной операции объём занятого дискового пространства возрастёт на 1 115 kB.
-Пол:1 http://ru.archive.ubuntu.com/ubuntu noble/universe amd64 gnome-screenshot amd64 41.0-2build2 [174 kB]
-Получено 174 kB за 0с (1 738 kB/s)     
-Выбор ранее не выбранного пакета gnome-screenshot.
-(Чтение базы данных … на данный момент установлено 253185 файлов и каталогов.)
-Подготовка к распаковке …/gnome-screenshot_41.0-2build2_amd64.deb …
-Распаковывается gnome-screenshot (41.0-2build2) …
-Настраивается пакет gnome-screenshot (41.0-2build2) …
-Обрабатываются триггеры для man-db (2.12.0-4build2) …
-Обрабатываются триггеры для libglib2.0-0t64:i386 (2.80.0-6ubuntu3.2) …
-Обрабатываются триггеры для libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.2) …
-Обрабатываются триггеры для bamfdaemon (0.5.6+22.04.20220217-0ubuntu5) …
-Rebuilding /usr/share/applications/bamf-2.index...
-Обрабатываются триггеры для desktop-file-utils (0.27-2build1) …
-Обрабатываются триггеры для hicolor-icon-theme (0.17-2) …
-Обрабатываются триггеры для gnome-menus (3.36.0-1.1ubuntu3) …
-> sudo apt install gnome-screenshot
-Чтение списков пакетов… Готово
-Построение дерева зависимостей… Готово
-Чтение информации о состоянии… Готово         
-Уже установлен пакет gnome-screenshot самой новой версии (41.0-2build2).
-Следующие пакеты устанавливались автоматически и больше не требуются:
-  libpkcs11-helper1t64 python3-netifaces
-Для их удаления используйте «sudo apt autoremove».
-Обновлено 0 пакетов, установлено 0 новых пакетов, для удаления отмечено 0 пакетов, и 89 пакетов не обновлено.
-> sleep 20s && gnome-screenshot --file artifacts/screenshot.png
+1 directory, 1 file
+~/m/workspace/p/lab06 main !107 ?7 >         
