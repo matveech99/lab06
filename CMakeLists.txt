@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_EXAMPLES "Build examples" OFF)
 option(BUILD_TESTS "Build tests" OFF)
-option(BUILD_TESTS "Build tests" OFF)
 
 project(print)
 set(PRINT_VERSION_MAJOR 0)
@@ -43,22 +42,12 @@ install(TARGETS print
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
 install(EXPORT print-config DESTINATION cmake)
-
 if(BUILD_TESTS)
   enable_testing()
-  
-  
-  # Решение 1: Отключаем -Werror для gtest (добавьте эту строку)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=maybe-uninitialized")
-  
-  # Подключаем gtest (уже с отключенной ошибкой)
   add_subdirectory(third-party/gtest)
-    
-  
   file(GLOB ${PROJECT_NAME}_TEST_SOURCES tests/*.cpp)
   add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
   target_link_libraries(check ${PROJECT_NAME} gtest_main)
   add_test(NAME check COMMAND check)
 endif()
-
 include(CPackConfig.cmake)

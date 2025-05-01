@@ -1,7 +1,7 @@
 CMakeFiles/print.dir/sources/print.cpp.o: \
- /home/matvey/matveech99/workspace/projects/lab05/sources/print.cpp \
+ /home/matvey/matveech99/workspace/projects/lab06/sources/print.cpp \
  /usr/include/stdc-predef.h \
- /home/matvey/matveech99/workspace/projects/lab05/include/print.hpp \
+ /home/matvey/matveech99/workspace/projects/lab06/include/print.hpp \
  /usr/include/c++/13/fstream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

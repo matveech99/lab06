@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/matvey/matveech99/workspace/projects/lab05/include
+CXX_INCLUDES = -I/home/matvey/matveech99/workspace/projects/lab06/include
 
-CXX_FLAGS =  -Wno-error=maybe-uninitialized -std=gnu++11
+CXX_FLAGS = -std=gnu++11
 
